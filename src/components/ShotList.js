@@ -4,7 +4,7 @@ import React from "react";
 
 export default function ShotList({ shots }) {
   const reversed = [...shots].reverse();
-  
+
   return (
     <>
       <h2>Shot History ({shots.length} total)</h2>

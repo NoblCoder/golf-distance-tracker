@@ -28,21 +28,19 @@ function App() {
       <h1>🏌️‍♂️ Golf Distance Tracker</h1>
 
       <nav className='nav-bar'>
-        <button 
-          className={page === 'home' ? 'nav-btn active' : 'nav-btn'}
-          onClick={() => setPage('home')}
-        >
+        <button
+          className={page === "home" ? "nav-btn active" : "nav-btn"}
+          onClick={() => setPage("home")}>
           📊 Dashboard
         </button>
-        <button 
-          className={page === 'history' ? 'nav-btn active' : 'nav-btn'}
-          onClick={() => setPage('history')}
-        >
+        <button
+          className={page === "history" ? "nav-btn active" : "nav-btn"}
+          onClick={() => setPage("history")}>
           📜 Shot History
         </button>
       </nav>
 
-      {page === 'home' && (
+      {page === "home" && (
         <>
           <div className='card'>
             <AddShotForm addShot={addShot} />
@@ -54,7 +52,7 @@ function App() {
         </>
       )}
 
-      {page === 'history' && (
+      {page === "history" && (
         <div className='card'>
           <ShotList shots={shots} />
         </div>

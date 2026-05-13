@@ -1,70 +1,141 @@
-# Getting Started with Create React App
+# 🏌️‍♂️ Golf Distance Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A comprehensive golf shot tracking app with advanced analytics, built with React and TypeScript.
 
-## Available Scripts
+## ✨ Features
 
-In the project directory, you can run:
+### 📊 Core Features
+- **Shot Tracking**: Record club, distance, and shot type for every shot
+- **Club Averages**: View average distances with min/max ranges for each club
+- **Shot History**: Complete history of all shots with export capability
 
-### `npm start`
+### 📈 Advanced Analytics
+- **Charts (Recharts)**: 
+  - Average distance by club (bar chart)
+  - Distance distribution (histogram)
+  - Shot dispersion scatter plot
+- **Filters**: Filter shots by club, shot type, session, and date range
+- **Dispersion Tracking**: Track offline and short/long dispersion for accuracy analysis
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🗺️ GPS & Location
+- **GPS Shot Mapping**: Track GPS coordinates for each shot
+- **Location-Based Sessions**: Associate practice sessions with locations
+- **GPS shot list**: View all shots with GPS data
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 📅 Session Management
+- **Practice Session Grouping**: Organize shots into practice sessions
+- **Session Tracking**: Name sessions and track dates/locations
+- **Active Session**: Easily switch between sessions
 
-### `npm test`
+### 💾 Data Management
+- **CSV Export**: Export all shot data to CSV for external analysis
+- **Local Storage**: All data saved locally in browser
+- **Data Persistence**: Never lose your shots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🎨 User Experience
+- **Dark Mode**: Toggle between light and dark themes
+- **Mobile-First UI**: Fully responsive design optimized for mobile
+- **Eye-catching Animations**: Smooth transitions and hover effects
+- **Multi-Page Navigation**: Organized into Dashboard, Charts, History, Sessions, and Map views
 
-### `npm run build`
+### 📱 PWA Support
+- **Progressive Web App**: Install on your device for app-like experience
+- **Offline Support**: Service worker for offline functionality
+- **Home Screen Installation**: Add to home screen on mobile devices
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+\`\`\`bash
+npm install
+\`\`\`
 
-### `npm run eject`
+### Development
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+\`\`\`bash
+npm start
+\`\`\`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+\`\`\`bash
+npm run build
+\`\`\`
 
-## Learn More
+Builds the app for production to the \`build\` folder.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🛠️ Technology Stack
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **React** (v18) - UI framework
+- **TypeScript** - Type safety and better DX
+- **Recharts** - Data visualization
+- **date-fns** - Date formatting and manipulation
+- **CSS3** - Animations and responsive design
+- **Service Workers** - PWA capabilities
+- **Local Storage** - Client-side data persistence
 
-### Code Splitting
+## 📱 Pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Dashboard (📊)
+- Add new shots with optional GPS and dispersion tracking
+- Filter shots by various criteria
+- View club averages at a glance
 
-### Analyzing the Bundle Size
+### Charts (📈)
+- Visual analytics with multiple chart types
+- Interactive data visualization
+- Dispersion analysis
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### History (📜)
+- Complete shot list with all details
+- Export to CSV functionality
+- Filter and search capabilities
 
-### Making a Progressive Web App
+### Sessions (📅)
+- Create and manage practice sessions
+- Switch between sessions
+- Track session locations and dates
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Map (🗺️)
+- View GPS-tracked shots
+- Visualize shot locations
+- Ready for map library integration (Leaflet/Google Maps)
 
-### Advanced Configuration
+## 🎯 Shot Types
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Normal
+- Stinger
+- Flop
+- Punch
+- Knockdown
 
-### Deployment
+## 🏌️ Clubs Supported
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Driver, 3 Wood, 5 Wood, 3-9 Irons, PW, GW, SW, LW
 
-### `npm run build` fails to minify
+## 💡 Tips
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Enable GPS** for location-based shot tracking
+2. **Track Dispersion** to analyze shot accuracy
+3. **Use Sessions** to organize practice rounds
+4. **Export Data** regularly for backup
+5. **Toggle Dark Mode** for comfortable viewing in different lighting
+
+## 🔐 Privacy
+
+All data is stored locally in your browser. No data is sent to external servers.
+
+## 📝 License
+
+MIT
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+---
+
+Built with ⛳ by golf enthusiasts, for golf enthusiasts.

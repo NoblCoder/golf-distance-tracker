@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Golf Tracker",
+  "name": "Golf Distance Tracker",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,8 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#7ed957",
+  "background_color": "#4bb3fd",
+  "description": "Track your golf shot distances, analyze performance with charts, and improve your game",
+  "categories": ["sports", "lifestyle"]
 }

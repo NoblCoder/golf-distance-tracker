@@ -24,7 +24,9 @@ export default function ClubAverages({ shots }) {
           <div key={a.club} className='avg-item'>
             <div className='club-name'>{a.club}</div>
             <div className='club-avg'>{a.avg} yds</div>
-            <div className='club-count'>{a.count} shot{a.count !== 1 ? 's' : ''}</div>
+            <div className='club-count'>
+              {a.count} shot{a.count !== 1 ? "s" : ""}
+            </div>
           </div>
         ))}
       </div>
