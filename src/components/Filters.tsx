@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Filters as FilterType, Session } from "../types";
-import { format } from "date-fns";
 
 interface FiltersProps {
   filters: FilterType;

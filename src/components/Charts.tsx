@@ -3,8 +3,6 @@
 import React from "react";
 import { Shot } from "../types";
 import {
-  LineChart,
-  Line,
   BarChart,
   Bar,
   ScatterChart,
