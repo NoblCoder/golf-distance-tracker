@@ -35,23 +35,26 @@ export default function AddShotForm({
   const [club, setClub] = useState("Driver");
   const [distance, setDistance] = useState("");
   const [shotType, setShotType] = useState("Normal");
-  const [useGPS, setUseGPS] = useState(false);
   const [trackDispersion, setTrackDispersion] = useState(false);
   const [offline, setOffline] = useState("");
   const [short, setShort] = useState("");
+  const [isGettingLocation, setIsGettingLocation] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!distance) return;
 
+    setIsGettingLocation(true);
     let gps: { lat: number; lng: number } | undefined;
-    if (useGPS) {
-      try {
-        gps = await getCurrentLocation();
-      } catch (error) {
-        console.error("Failed to get GPS location:", error);
-      }
+
+    // Always try to get GPS location
+    try {
+      gps = await getCurrentLocation();
+    } catch (error) {
+      console.error("Failed to get GPS location:", error);
+      // Continue without GPS if it fails
     }
+    setIsGettingLocation(false);
 
     const dispersion = trackDispersion
       ? {
@@ -76,7 +79,8 @@ export default function AddShotForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add Shot</h2>
+      <h2>Add Shot 📍</h2>
+      <p className='gps-indicator'>🌍 GPS tracking enabled</p>
 
       <label>Club</label>
       <select value={club} onChange={(e) => setClub(e.target.value)}>
@@ -101,15 +105,6 @@ export default function AddShotForm({
       </select>
 
       <div className='checkbox-group'>
-        <label className='checkbox-label'>
-          <input
-            type='checkbox'
-            checked={useGPS}
-            onChange={(e) => setUseGPS(e.target.checked)}
-          />
-          <span>Track GPS Location</span>
-        </label>
-
         <label className='checkbox-label'>
           <input
             type='checkbox'
@@ -145,7 +140,9 @@ export default function AddShotForm({
         </div>
       )}
 
-      <button type='submit'>Add Shot</button>
+      <button type='submit' disabled={isGettingLocation}>
+        {isGettingLocation ? "Getting GPS..." : "Add Shot"}
+      </button>
     </form>
   );
 }

@@ -138,15 +138,7 @@ function App() {
           </div>
 
           <div className='card'>
-            <Filters
-              filters={filters}
-              setFilters={setFilters}
-              sessions={sessions}
-            />
-          </div>
-
-          <div className='card'>
-            <ClubAverages shots={filteredShots} />
+            <ClubAverages shots={shots} />
           </div>
         </>
       )}
