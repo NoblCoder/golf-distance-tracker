@@ -8,6 +8,7 @@ import Charts from "./components/Charts";
 import Filters from "./components/Filters";
 import Sessions from "./components/Sessions";
 import Map from "./components/Map";
+import RangeFinder from "./components/RangeFinder";
 import { Shot, Session, Page, Filters as FilterType } from "./types";
 import "./App.css";
 
@@ -126,6 +127,11 @@ function App() {
           onClick={() => setPage("map")}>
           🗺️ Map
         </button>
+        <button
+          className={page === "rangefinder" ? "nav-btn active" : "nav-btn"}
+          onClick={() => setPage("rangefinder")}>
+          📏 Range Finder
+        </button>
       </nav>
 
       {page === "home" && (
@@ -178,6 +184,12 @@ function App() {
       {page === "map" && (
         <div className='card'>
           <Map shots={filteredShots} />
+        </div>
+      )}
+
+      {page === "rangefinder" && (
+        <div className='card'>
+          <RangeFinder />
         </div>
       )}
     </div>

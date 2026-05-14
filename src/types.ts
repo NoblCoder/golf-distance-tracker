@@ -24,7 +24,13 @@ export interface Session {
   location?: string;
 }
 
-export type Page = "home" | "history" | "charts" | "sessions" | "map";
+export type Page =
+  | "home"
+  | "history"
+  | "charts"
+  | "sessions"
+  | "map"
+  | "rangefinder";
 
 export interface Filters {
   club?: string;

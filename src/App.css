@@ -1104,3 +1104,241 @@ body.dark-mode .shot-item {
   margin: 10px 0;
   overflow-x: auto;
 }
+
+/* ===== RANGE FINDER ===== */
+.range-finder-container {
+  animation: slideIn 0.5s ease-out;
+}
+
+.range-finder-description {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.dark-mode .range-finder-description {
+  color: #a0aec0;
+}
+
+.range-finder-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-location-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.location-search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.location-search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.dark-mode .location-search-input {
+  background: #2d3748;
+  color: white;
+  border-color: #4a5568;
+}
+
+.dark-mode .location-search-input:focus {
+  border-color: #667eea;
+}
+
+.tracking-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tracking-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.tracking-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.tracking-btn.active {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.clear-target-btn {
+  padding: 0.75rem 1.5rem;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-target-btn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+.distance-display {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  animation: float 3s ease-in-out infinite;
+}
+
+.distance-value {
+  font-size: 4rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.distance-unit {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.distance-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+}
+
+.range-finder-map {
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.loading-location {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.dark-mode .loading-location {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+}
+
+.loading-location p {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.dark-mode .loading-location p {
+  color: #a0aec0;
+}
+
+.loading-hint {
+  font-size: 0.9rem !important;
+  color: #999 !important;
+}
+
+.dark-mode .loading-hint {
+  color: #718096 !important;
+}
+
+.range-finder-instructions {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.dark-mode .range-finder-instructions {
+  background: #2d3748;
+  border-left-color: #667eea;
+}
+
+.range-finder-instructions h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.dark-mode .range-finder-instructions h3 {
+  color: white;
+}
+
+.range-finder-instructions ul {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.5rem;
+}
+
+.range-finder-instructions li {
+  margin: 0.5rem 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.dark-mode .range-finder-instructions li {
+  color: #a0aec0;
+}
+
+.tracking-status {
+  color: #22c55e;
+  font-weight: 600;
+  margin: 0.5rem 0 0 0;
+}
+
+.popup-distance {
+  color: #dc2626;
+  font-size: 1.1rem;
+  margin: 0.5rem 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .distance-value {
+    font-size: 3rem;
+  }
+
+  .distance-unit {
+    font-size: 1.2rem;
+  }
+
+  .tracking-controls {
+    flex-direction: column;
+  }
+
+  .tracking-btn,
+  .clear-target-btn {
+    width: 100%;
+  }
+}
