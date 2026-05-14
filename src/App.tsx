@@ -9,6 +9,7 @@ import Filters from "./components/Filters";
 import Sessions from "./components/Sessions";
 import Map from "./components/Map";
 import RangeFinder from "./components/RangeFinder";
+import InstallPrompt from "./components/InstallPrompt";
 import { Shot, Session, Page, Filters as FilterType } from "./types";
 import "./App.css";
 
@@ -92,6 +93,8 @@ function App() {
 
   return (
     <div className='container'>
+      <InstallPrompt />
+
       <header className='app-header'>
         <button
           className='burger-menu-btn'

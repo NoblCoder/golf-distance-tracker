@@ -23,13 +23,22 @@ reportWebVitals();
 // Register service worker for PWA
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
+    const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
     navigator.serviceWorker
-      .register("/service-worker.js")
+      .register(swUrl)
       .then((registration) => {
-        console.log("SW registered: ", registration);
+        console.log(
+          "✅ PWA Service Worker registered successfully:",
+          registration,
+        );
+
+        // Check for updates periodically
+        setInterval(() => {
+          registration.update();
+        }, 60000); // Check every minute
       })
       .catch((registrationError) => {
-        console.log("SW registration failed: ", registrationError);
+        console.log("❌ SW registration failed:", registrationError);
       });
   });
 }

@@ -1478,3 +1478,149 @@ body.dark-mode .shot-item {
     width: 100%;
   }
 }
+
+/* ===== INSTALL PROMPT (PWA) ===== */
+.install-prompt {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+.install-prompt-content {
+  padding: 20px;
+  color: white;
+  position: relative;
+}
+
+.install-prompt h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.install-prompt p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.close-prompt {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.close-prompt:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.install-button {
+  width: 100%;
+  padding: 14px;
+  background: white;
+  color: #667eea;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: all 0.3s ease;
+  text-transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.install-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  animation: none;
+}
+
+.install-prompt.ios ol {
+  margin: 12px 0;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.install-prompt.ios li {
+  margin: 8px 0;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.install-prompt.ios strong {
+  color: white;
+  font-weight: 700;
+}
+
+.ios-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+
+.ios-icon svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dark-mode .install-prompt {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+}
+
+@media (max-width: 768px) {
+  .install-prompt {
+    bottom: 10px;
+    width: 95%;
+  }
+
+  .install-prompt-content {
+    padding: 16px;
+  }
+
+  .install-prompt h3 {
+    font-size: 1.1rem;
+  }
+
+  .install-prompt p {
+    font-size: 0.9rem;
+  }
+}
