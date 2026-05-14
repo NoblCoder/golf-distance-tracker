@@ -5,20 +5,23 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 // Firebase configuration
-// TODO: Replace with your actual Firebase config from Firebase Console
-// Visit: https://console.firebase.google.com/
+// IMPORTANT: These are PLACEHOLDER values only. Not real secrets.
+// To enable cloud sync, create a .env file with your actual Firebase config.
+// See .env.example for setup instructions.
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "demo-api-key",
+  apiKey:
+    process.env.REACT_APP_FIREBASE_API_KEY || "PLACEHOLDER-NOT-A-REAL-KEY",
   authDomain:
     process.env.REACT_APP_FIREBASE_AUTH_DOMAIN ||
-    "demo-project.firebaseapp.com",
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || "demo-project",
+    "placeholder-project.firebaseapp.com",
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || "placeholder-project",
   storageBucket:
-    process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || "demo-project.appspot.com",
+    process.env.REACT_APP_FIREBASE_STORAGE_BUCKET ||
+    "placeholder-project.appspot.com",
   messagingSenderId:
-    process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || "123456789",
+    process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || "000000000000",
   appId:
-    process.env.REACT_APP_FIREBASE_APP_ID || "1:123456789:web:abcdef123456",
+    process.env.REACT_APP_FIREBASE_APP_ID || "0:000000000000:web:placeholder",
 };
 
 // Initialize Firebase
