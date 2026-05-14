@@ -18,6 +18,7 @@ function App() {
   const [currentSessionId, setCurrentSessionId] = useState<string>("default");
   const [page, setPage] = useState<Page>("home");
   const [filters, setFilters] = useState<FilterType>({});
+  const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem("darkMode");
     return saved ? JSON.parse(saved) : false;
@@ -92,6 +93,14 @@ function App() {
   return (
     <div className='container'>
       <header className='app-header'>
+        <button
+          className='burger-menu-btn'
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label='Toggle menu'>
+          <span className='burger-line'></span>
+          <span className='burger-line'></span>
+          <span className='burger-line'></span>
+        </button>
         <h1>🏌️‍♂️ Golf Distance Tracker</h1>
         <button
           className='dark-mode-toggle'
@@ -101,36 +110,75 @@ function App() {
         </button>
       </header>
 
-      <nav className='nav-bar'>
+      {/* Overlay */}
+      {menuOpen && (
+        <div className='menu-overlay' onClick={() => setMenuOpen(false)}></div>
+      )}
+
+      {/* Slide-out Menu */}
+      <nav className={`slide-menu ${menuOpen ? "open" : ""}`}>
+        <div className='menu-header'>
+          <h2>Menu</h2>
+          <button
+            className='close-menu-btn'
+            onClick={() => setMenuOpen(false)}
+            aria-label='Close menu'>
+            ✕
+          </button>
+        </div>
         <button
-          className={page === "home" ? "nav-btn active" : "nav-btn"}
-          onClick={() => setPage("home")}>
-          📊 Dashboard
+          className={page === "home" ? "menu-item active" : "menu-item"}
+          onClick={() => {
+            setPage("home");
+            setMenuOpen(false);
+          }}>
+          <span className='menu-icon'>📊</span>
+          <span>Dashboard</span>
         </button>
         <button
-          className={page === "charts" ? "nav-btn active" : "nav-btn"}
-          onClick={() => setPage("charts")}>
-          📈 Charts
+          className={page === "rangefinder" ? "menu-item active" : "menu-item"}
+          onClick={() => {
+            setPage("rangefinder");
+            setMenuOpen(false);
+          }}>
+          <span className='menu-icon'>📏</span>
+          <span>Range Finder</span>
         </button>
         <button
-          className={page === "history" ? "nav-btn active" : "nav-btn"}
-          onClick={() => setPage("history")}>
-          📜 History
+          className={page === "map" ? "menu-item active" : "menu-item"}
+          onClick={() => {
+            setPage("map");
+            setMenuOpen(false);
+          }}>
+          <span className='menu-icon'>🗺️</span>
+          <span>Shot Map</span>
         </button>
         <button
-          className={page === "sessions" ? "nav-btn active" : "nav-btn"}
-          onClick={() => setPage("sessions")}>
-          📅 Sessions
+          className={page === "charts" ? "menu-item active" : "menu-item"}
+          onClick={() => {
+            setPage("charts");
+            setMenuOpen(false);
+          }}>
+          <span className='menu-icon'>📈</span>
+          <span>Charts</span>
         </button>
         <button
-          className={page === "map" ? "nav-btn active" : "nav-btn"}
-          onClick={() => setPage("map")}>
-          🗺️ Map
+          className={page === "history" ? "menu-item active" : "menu-item"}
+          onClick={() => {
+            setPage("history");
+            setMenuOpen(false);
+          }}>
+          <span className='menu-icon'>📜</span>
+          <span>History</span>
         </button>
         <button
-          className={page === "rangefinder" ? "nav-btn active" : "nav-btn"}
-          onClick={() => setPage("rangefinder")}>
-          📏 Range Finder
+          className={page === "sessions" ? "menu-item active" : "menu-item"}
+          onClick={() => {
+            setPage("sessions");
+            setMenuOpen(false);
+          }}>
+          <span className='menu-icon'>📅</span>
+          <span>Sessions</span>
         </button>
       </nav>
 
