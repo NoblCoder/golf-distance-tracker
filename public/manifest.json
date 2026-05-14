@@ -27,6 +27,21 @@
   "theme_color": "#667eea",
   "background_color": "#4bb3fd",
   "categories": ["sports", "lifestyle", "fitness"],
-  "screenshots": [],
+  "screenshots": [
+    {
+      "src": "screenshots/mobile-1.png",
+      "sizes": "400x850",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Track your golf shots with GPS"
+    },
+    {
+      "src": "screenshots/desktop-1.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Analyze performance with charts"
+    }
+  ],
   "prefer_related_applications": false
 }

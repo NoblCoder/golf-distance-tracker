@@ -1624,3 +1624,226 @@ body.dark-mode .shot-item {
     font-size: 0.9rem;
   }
 }
+
+/* ===== NOTIFICATION SETTINGS ===== */
+.notification-settings {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.notification-settings h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-info {
+  flex: 1;
+}
+
+.setting-info strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #333;
+  font-size: 1rem;
+}
+
+.setting-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 34px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: #667eea;
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+  transform: translateX(22px);
+}
+
+.btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+.dark-mode .notification-settings {
+  background: #2d3748;
+}
+
+.dark-mode .notification-settings h3 {
+  color: white;
+}
+
+.dark-mode .setting-item {
+  border-bottom-color: #4a5568;
+}
+
+.dark-mode .setting-info strong {
+  color: white;
+}
+
+.dark-mode .setting-info p {
+  color: #cbd5e0;
+}
+
+.dark-mode .btn-secondary {
+  background: #4a5568;
+  color: white;
+}
+
+.dark-mode .btn-secondary:hover {
+  background: #5a6778;
+}
+
+/* ===== CLOUD SYNC SETTINGS ===== */
+.cloud-sync-settings {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.cloud-sync-settings h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.sync-status {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.sync-status p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.sync-actions {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.btn-danger {
+  background: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: #d32f2f;
+}
+
+.btn-danger:disabled,
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dark-mode .cloud-sync-settings {
+  background: #2d3748;
+}
+
+.dark-mode .cloud-sync-settings h3 {
+  color: white;
+}
+
+.dark-mode .sync-status {
+  background: #4a5568;
+}
+
+.dark-mode .sync-status p {
+  color: #cbd5e0;
+}
+
+/* ===== SETTINGS PAGE ===== */
+.settings-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.settings-page h2 {
+  margin: 0 0 24px 0;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.dark-mode .settings-page h2 {
+  color: white;
+}

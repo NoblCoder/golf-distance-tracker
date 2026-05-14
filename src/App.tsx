@@ -9,6 +9,7 @@ import Filters from "./components/Filters";
 import Sessions from "./components/Sessions";
 import Map from "./components/Map";
 import RangeFinder from "./components/RangeFinder";
+import Settings from "./components/Settings";
 import InstallPrompt from "./components/InstallPrompt";
 import { Shot, Session, Page, Filters as FilterType } from "./types";
 import "./App.css";
@@ -183,6 +184,15 @@ function App() {
           <span className='menu-icon'>📅</span>
           <span>Sessions</span>
         </button>
+        <button
+          className={page === "settings" ? "menu-item active" : "menu-item"}
+          onClick={() => {
+            setPage("settings");
+            setMenuOpen(false);
+          }}>
+          <span className='menu-icon'>⚙️</span>
+          <span>Settings</span>
+        </button>
       </nav>
 
       {page === "home" && (
@@ -238,10 +248,17 @@ function App() {
         </div>
       )}
 
-      {page === "rangefinder" && (
-        <div className='card'>
-          <RangeFinder />
-        </div>
+      {page === "rangefinder" && <RangeFinder />}
+
+      {page === "settings" && (
+        <Settings
+          shots={shots}
+          sessions={sessions}
+          onDataMerged={(mergedShots, mergedSessions) => {
+            setShots(mergedShots);
+            setSessions(mergedSessions);
+          }}
+        />
       )}
     </div>
   );

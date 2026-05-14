@@ -30,7 +30,8 @@ export type Page =
   | "charts"
   | "sessions"
   | "map"
-  | "rangefinder";
+  | "rangefinder"
+  | "settings";
 
 export interface Filters {
   club?: string;
