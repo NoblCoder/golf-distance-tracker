@@ -1326,9 +1326,11 @@ body.dark-mode .shot-item {
 
 @media (max-width: 768px) {
   .nav-btn {
-    font-size: 0.75rem;
-    padding: 10px 8px;
-    min-width: 80px;
+    font-size: 0.7rem;
+    padding: 8px 6px;
+    min-width: 70px;
+    white-space: normal;
+    line-height: 1.2;
   }
 
   .distance-value {
