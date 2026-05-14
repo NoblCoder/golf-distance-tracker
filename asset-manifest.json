@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/golf-distance-tracker/static/css/main.487fb1ca.css",
-    "main.js": "/golf-distance-tracker/static/js/main.696b8eb5.js",
+    "main.css": "/golf-distance-tracker/static/css/main.c7677472.css",
+    "main.js": "/golf-distance-tracker/static/js/main.26e9600c.js",
     "static/js/453.5f34cfad.chunk.js": "/golf-distance-tracker/static/js/453.5f34cfad.chunk.js",
     "index.html": "/golf-distance-tracker/index.html",
-    "main.487fb1ca.css.map": "/golf-distance-tracker/static/css/main.487fb1ca.css.map",
-    "main.696b8eb5.js.map": "/golf-distance-tracker/static/js/main.696b8eb5.js.map",
+    "main.c7677472.css.map": "/golf-distance-tracker/static/css/main.c7677472.css.map",
+    "main.26e9600c.js.map": "/golf-distance-tracker/static/js/main.26e9600c.js.map",
     "453.5f34cfad.chunk.js.map": "/golf-distance-tracker/static/js/453.5f34cfad.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.487fb1ca.css",
-    "static/js/main.696b8eb5.js"
+    "static/css/main.c7677472.css",
+    "static/js/main.26e9600c.js"
   ]
 }
