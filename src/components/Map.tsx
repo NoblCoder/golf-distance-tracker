@@ -1,6 +1,12 @@
 /** @format */
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import {
   MapContainer,
   TileLayer,
@@ -8,10 +14,12 @@ import {
   Popup,
   CircleMarker,
   LayersControl,
+  useMap,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Shot } from "../types";
+import { searchGolfCourses, GeocodingResult } from "../utils/geocoding";
 
 // Fix Leaflet default marker icon issue
 import icon from "leaflet/dist/images/marker-icon.png";
@@ -50,15 +58,39 @@ const getMarkerColor = (shotType: string) => {
   }
 };
 
+// Component to handle map center changes
+function MapController({ center }: { center: [number, number] }) {
+  const map = useMap();
+
+  useEffect(() => {
+    map.flyTo(center, 15, {
+      duration: 1.5,
+    });
+  }, [center, map]);
+
+  return null;
+}
+
 export default function Map({ shots }: MapProps) {
   const shotsWithGPS = shots.filter((shot) => shot.gps);
   const [courseName, setCourseName] = useState<string>(
     localStorage.getItem("currentCourse") || "",
   );
+  const [courseLocation, setCourseLocation] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(() => {
+    const saved = localStorage.getItem("currentCourseLocation");
+    return saved ? JSON.parse(saved) : null;
+  });
+  const [searchResults, setSearchResults] = useState<GeocodingResult[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const [userLocation, setUserLocation] = useState<{
     lat: number;
     lng: number;
   } | null>(null);
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Get user's current location for course context
   useEffect(() => {
@@ -77,13 +109,56 @@ export default function Map({ shots }: MapProps) {
     }
   }, []);
 
+  // Debounced search function
+  const handleCourseSearch = useCallback(async (query: string) => {
+    if (query.length < 3) {
+      setSearchResults([]);
+      setShowResults(false);
+      return;
+    }
+
+    setIsSearching(true);
+    const results = await searchGolfCourses(query);
+    setSearchResults(results);
+    setShowResults(results.length > 0);
+    setIsSearching(false);
+  }, []);
+
   const handleCourseChange = (newCourse: string) => {
     setCourseName(newCourse);
-    localStorage.setItem("currentCourse", newCourse);
+
+    // Clear existing timeout
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+
+    // Debounce the search
+    searchTimeoutRef.current = setTimeout(() => {
+      handleCourseSearch(newCourse);
+    }, 500);
   };
 
-  // Calculate center of all GPS points
+  const handleCourseSelect = (result: GeocodingResult) => {
+    setCourseName(result.name);
+    setCourseLocation({ lat: result.lat, lng: result.lng });
+    setShowResults(false);
+
+    // Save to localStorage
+    localStorage.setItem("currentCourse", result.name);
+    localStorage.setItem(
+      "currentCourseLocation",
+      JSON.stringify({ lat: result.lat, lng: result.lng }),
+    );
+  };
+
+  // Calculate center of all GPS points or use course location
   const center: [number, number] = useMemo(() => {
+    // If a course is selected, use that location
+    if (courseLocation) {
+      return [courseLocation.lat, courseLocation.lng];
+    }
+
+    // Otherwise, if there are shots with GPS, center on them
     if (shotsWithGPS.length === 0) return defaultCenter;
 
     const avgLat =
@@ -94,7 +169,7 @@ export default function Map({ shots }: MapProps) {
       shotsWithGPS.length;
 
     return [avgLat, avgLng];
-  }, [shotsWithGPS]);
+  }, [shotsWithGPS, courseLocation]);
 
   return (
     <div className='map-container'>
@@ -104,15 +179,47 @@ export default function Map({ shots }: MapProps) {
       <div className='course-selector'>
         <label htmlFor='course-name'>
           <span className='course-label'>⛳ Golf Course:</span>
-          <input
-            id='course-name'
-            type='text'
-            value={courseName}
-            onChange={(e) => handleCourseChange(e.target.value)}
-            placeholder='Enter course name...'
-            className='course-input'
-          />
+          <div className='course-search-wrapper'>
+            <input
+              id='course-name'
+              type='text'
+              value={courseName}
+              onChange={(e) => handleCourseChange(e.target.value)}
+              onFocus={() => courseName.length >= 3 && setShowResults(true)}
+              onBlur={() => setTimeout(() => setShowResults(false), 200)}
+              placeholder='Search for a golf course...'
+              className='course-input'
+            />
+            {isSearching && <span className='search-loader'>🔍</span>}
+            {showResults && searchResults.length > 0 && (
+              <div className='search-results'>
+                {searchResults.map((result, index) => (
+                  <div
+                    key={index}
+                    className='search-result-item'
+                    onClick={() => handleCourseSelect(result)}
+                    onMouseDown={(e) => e.preventDefault()}>
+                    <div className='result-name'>⛳ {result.name}</div>
+                    <div className='result-address'>{result.displayName}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </label>
+        {courseLocation && (
+          <button
+            className='clear-course-btn'
+            onClick={() => {
+              setCourseLocation(null);
+              setCourseName("");
+              localStorage.removeItem("currentCourse");
+              localStorage.removeItem("currentCourseLocation");
+            }}
+            title='Clear selected course'>
+            ✕ Clear Course
+          </button>
+        )}
         {userLocation && (
           <p className='location-info'>
             📍 Your location: {userLocation.lat.toFixed(4)},{" "}
@@ -133,6 +240,7 @@ export default function Map({ shots }: MapProps) {
             zoom={15}
             style={mapContainerStyle}
             scrollWheelZoom={true}>
+            <MapController center={center} />
             <LayersControl position='topright'>
               <LayersControl.BaseLayer checked name='Street Map'>
                 <TileLayer
@@ -149,13 +257,25 @@ export default function Map({ shots }: MapProps) {
               </LayersControl.BaseLayer>
             </LayersControl>
 
+            {/* Selected course marker */}
+            {courseLocation && (
+              <Marker position={[courseLocation.lat, courseLocation.lng]}>
+                <Popup>
+                  <div className='map-popup'>
+                    <h4>⛳ {courseName}</h4>
+                    <p className='shot-timestamp'>Selected Golf Course</p>
+                  </div>
+                </Popup>
+              </Marker>
+            )}
+
             {/* User's current location marker */}
             {userLocation && (
               <Marker position={[userLocation.lat, userLocation.lng]}>
                 <Popup>
                   <div className='map-popup'>
                     <h4>📍 Your Location</h4>
-                    {courseName && <p>At: {courseName}</p>}
+                    {courseName && !courseLocation && <p>At: {courseName}</p>}
                     <p className='shot-timestamp'>Current position</p>
                   </div>
                 </Popup>

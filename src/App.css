@@ -806,6 +806,86 @@ body.dark-mode .shot-item {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.course-search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-loader {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.search-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.search-result-item {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background-color: #f8f9fa;
+}
+
+.result-name {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.result-address {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.clear-course-btn {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.clear-course-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
 .map-content {
   margin-top: 20px;
 }
@@ -837,6 +917,37 @@ body.dark-mode .shot-item {
 
 .dark-mode .course-input::placeholder {
   color: #718096;
+}
+
+.dark-mode .search-results {
+  background: #2d3748;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .search-result-item {
+  border-bottom-color: #4a5568;
+}
+
+.dark-mode .search-result-item:hover {
+  background-color: #4a5568;
+}
+
+.dark-mode .result-name {
+  color: white;
+}
+
+.dark-mode .result-address {
+  color: #a0aec0;
+}
+
+.dark-mode .clear-course-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .clear-course-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .map-legend {
