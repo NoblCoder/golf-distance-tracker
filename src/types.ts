@@ -7,6 +7,11 @@ export interface Shot {
   shotType: string;
   timestamp: number;
   sessionId: string;
+  courseName?: string;
+  holeNumber?: number;
+  holePar?: number;
+  holeYardage?: number;
+  holeHandicap?: number;
   gps?: {
     lat: number;
     lng: number;
@@ -24,6 +29,14 @@ export interface Session {
   location?: string;
 }
 
+export interface SavedHole {
+  courseName: string;
+  holeNumber: number;
+  par?: number;
+  yardage?: number;
+  handicap?: number;
+}
+
 export type Page =
   | "home"
   | "history"
@@ -37,6 +50,8 @@ export interface Filters {
   club?: string;
   shotType?: string;
   sessionId?: string;
+  courseName?: string;
+  holeNumber?: number;
   dateFrom?: number;
   dateTo?: number;
 }

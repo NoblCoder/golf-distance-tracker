@@ -86,6 +86,10 @@ function App() {
       if (filters.shotType && shot.shotType !== filters.shotType) return false;
       if (filters.sessionId && shot.sessionId !== filters.sessionId)
         return false;
+      if (filters.courseName && shot.courseName !== filters.courseName)
+        return false;
+      if (filters.holeNumber && shot.holeNumber !== filters.holeNumber)
+        return false;
       if (filters.dateFrom && shot.timestamp < filters.dateFrom) return false;
       if (filters.dateTo && shot.timestamp > filters.dateTo) return false;
       return true;
@@ -223,6 +227,7 @@ function App() {
               filters={filters}
               setFilters={setFilters}
               sessions={sessions}
+              shots={shots}
             />
           </div>
           <div className='card'>

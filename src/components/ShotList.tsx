@@ -37,6 +37,25 @@ export default function ShotList({ shots }: ShotListProps) {
               <span className='shot-distance'>{s.distance} yds</span>
               <span className='shot-type'>{s.shotType}</span>
             </div>
+            {(s.courseName || s.holeNumber) && (
+              <div className='shot-course-info'>
+                {s.courseName && (
+                  <span className='shot-course'>⛳ {s.courseName}</span>
+                )}
+                {s.holeNumber && (
+                  <span className='shot-hole'>
+                    Hole {s.holeNumber}
+                    {s.holePar && ` (Par ${s.holePar})`}
+                  </span>
+                )}
+              </div>
+            )}
+            {(s.holeYardage || s.holeHandicap) && (
+              <div className='shot-hole-details'>
+                {s.holeYardage && <span>📏 {s.holeYardage} yds</span>}
+                {s.holeHandicap && <span>🎖️ HCP {s.holeHandicap}</span>}
+              </div>
+            )}
             <div className='shot-meta'>
               <span className='shot-date'>
                 {format(new Date(s.timestamp), "MMM dd, HH:mm")}

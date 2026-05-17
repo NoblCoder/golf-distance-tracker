@@ -35,6 +35,12 @@ export default function AddShotForm({
   const [club, setClub] = useState("Driver");
   const [distance, setDistance] = useState("");
   const [shotType, setShotType] = useState("Normal");
+  const [courseName, setCourseName] = useState("");
+  const [holeNumber, setHoleNumber] = useState("");
+  const [showHoleDetails, setShowHoleDetails] = useState(false);
+  const [holePar, setHolePar] = useState("");
+  const [holeYardage, setHoleYardage] = useState("");
+  const [holeHandicap, setHoleHandicap] = useState("");
   const [trackDispersion, setTrackDispersion] = useState(false);
   const [offline, setOffline] = useState("");
   const [short, setShort] = useState("");
@@ -68,6 +74,11 @@ export default function AddShotForm({
       distance: Number(distance),
       shotType,
       sessionId: currentSessionId,
+      courseName: courseName || undefined,
+      holeNumber: holeNumber ? Number(holeNumber) : undefined,
+      holePar: holePar ? Number(holePar) : undefined,
+      holeYardage: holeYardage ? Number(holeYardage) : undefined,
+      holeHandicap: holeHandicap ? Number(holeHandicap) : undefined,
       gps,
       dispersion,
     });
@@ -103,6 +114,73 @@ export default function AddShotForm({
           <option key={t}>{t}</option>
         ))}
       </select>
+
+      <label>Course Name (optional)</label>
+      <input
+        type='text'
+        value={courseName}
+        onChange={(e) => setCourseName(e.target.value)}
+        placeholder='e.g., Pebble Beach'
+      />
+
+      <label>Hole Number (optional)</label>
+      <input
+        type='number'
+        value={holeNumber}
+        onChange={(e) => setHoleNumber(e.target.value)}
+        placeholder='1-18'
+        min='1'
+        max='18'
+      />
+
+      {holeNumber && (
+        <div className='checkbox-group'>
+          <label className='checkbox-label'>
+            <input
+              type='checkbox'
+              checked={showHoleDetails}
+              onChange={(e) => setShowHoleDetails(e.target.checked)}
+            />
+            <span>Add hole details</span>
+          </label>
+        </div>
+      )}
+
+      {showHoleDetails && holeNumber && (
+        <div className='hole-details'>
+          <div>
+            <label>Par</label>
+            <input
+              type='number'
+              value={holePar}
+              onChange={(e) => setHolePar(e.target.value)}
+              placeholder='3-5'
+              min='3'
+              max='5'
+            />
+          </div>
+          <div>
+            <label>Yardage</label>
+            <input
+              type='number'
+              value={holeYardage}
+              onChange={(e) => setHoleYardage(e.target.value)}
+              placeholder='e.g., 425'
+            />
+          </div>
+          <div>
+            <label>Handicap</label>
+            <input
+              type='number'
+              value={holeHandicap}
+              onChange={(e) => setHoleHandicap(e.target.value)}
+              placeholder='1-18'
+              min='1'
+              max='18'
+            />
+          </div>
+        </div>
+      )}
 
       <div className='checkbox-group'>
         <label className='checkbox-label'>

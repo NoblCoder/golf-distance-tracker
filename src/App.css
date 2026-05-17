@@ -480,6 +480,18 @@ button:disabled:hover {
   margin-top: 15px;
 }
 
+/* ===== HOLE DETAILS ===== */
+.hole-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(126, 217, 87, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(126, 217, 87, 0.3);
+}
+
 /* ===== CLUB AVERAGES GRID ===== */
 .averages-grid {
   display: grid;
@@ -631,6 +643,33 @@ body.dark-mode .shot-item {
   padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   opacity: 0.9;
+}
+
+.shot-course-info {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.shot-course {
+  font-weight: 700;
+  color: #7ed957;
+}
+
+.shot-hole {
+  font-weight: 600;
+  color: #4bb3fd;
+}
+
+.shot-hole-details {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  opacity: 0.85;
 }
 
 /* ===== FILTERS ===== */

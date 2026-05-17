@@ -1,12 +1,13 @@
 /** @format */
 
 import React from "react";
-import { Filters as FilterType, Session } from "../types";
+import { Filters as FilterType, Session, Shot } from "../types";
 
 interface FiltersProps {
   filters: FilterType;
   setFilters: (filters: FilterType) => void;
   sessions: Session[];
+  shots: Shot[];
 }
 
 const clubs = [
@@ -33,7 +34,17 @@ export default function Filters({
   filters,
   setFilters,
   sessions,
+  shots,
 }: FiltersProps) {
+  // Extract unique course names and hole numbers from shots
+  const uniqueCourses = Array.from(
+    new Set(shots.map((s) => s.courseName).filter((c) => c)),
+  ).sort();
+
+  const uniqueHoles = Array.from(
+    new Set(shots.map((s) => s.holeNumber).filter((h) => h !== undefined)),
+  ).sort((a, b) => a! - b!);
+
   const handleClearFilters = () => {
     setFilters({});
   };
@@ -86,6 +97,42 @@ export default function Filters({
             {sessions.map((s) => (
               <option key={s.id} value={s.id}>
                 {s.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className='filter-item'>
+          <label>Course</label>
+          <select
+            value={filters.courseName || "All"}
+            onChange={(e) => {
+              const value =
+                e.target.value === "All" ? undefined : e.target.value;
+              setFilters({ ...filters, courseName: value });
+            }}>
+            <option>All</option>
+            {uniqueCourses.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className='filter-item'>
+          <label>Hole</label>
+          <select
+            value={filters.holeNumber?.toString() || "All"}
+            onChange={(e) => {
+              const value =
+                e.target.value === "All" ? undefined : Number(e.target.value);
+              setFilters({ ...filters, holeNumber: value });
+            }}>
+            <option>All</option>
+            {uniqueHoles.map((h) => (
+              <option key={h} value={h}>
+                Hole {h}
               </option>
             ))}
           </select>
